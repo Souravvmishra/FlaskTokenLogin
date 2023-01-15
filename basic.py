@@ -26,11 +26,11 @@ with app.app_context():
 @app.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json() #get the data from user
-    name = data.get('name')
+    username = data.get('username')
     email = data.get('email')
     password = data.get('password')
     #check email and password
-    if not name or not email or not password:
+    if not username or not email or not password:
         return make_response('Please enter all fields', 401)
 
 
@@ -41,7 +41,7 @@ def signup():
 
 
     user = User(
-            username=name,
+            username=username,
             email=email,
             password=hashed_password
         )
@@ -51,7 +51,7 @@ def signup():
     db.session.commit()
 
     #Create token
-    token = jwt.encode({'user': name, 'exp': datetime.utcnow() + timedelta(minutes=30)}, app.config['SECRET_KEY'])
+    token = jwt.encode({'user': username, 'exp': datetime.utcnow() + timedelta(minutes=30)}, app.config['SECRET_KEY'])
 
     return jsonify({'token': token})
 
@@ -60,14 +60,14 @@ def signup():
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json() #get the data from user
-    name = data.get('name')
+    username = data.get('username')
     email = data.get('email')
     password = data.get('password')
     password = password.encode('utf-8')
 
 
-    #check name and password
-    if not name or not password:
+    #check username and password
+    if not username or not password:
         return make_response('Please enter all fields', 401)
 
     #Check Database For User
@@ -79,7 +79,7 @@ def login():
    
     
     #Create token
-    token = jwt.encode({'user': name, 'exp': datetime.utcnow() + timedelta(minutes=30)}, app.config['SECRET_KEY'])
+    token = jwt.encode({'user': username, 'exp': datetime.utcnow() + timedelta(minutes=30)}, app.config['SECRET_KEY'])
 
     return jsonify({'token': token})
 

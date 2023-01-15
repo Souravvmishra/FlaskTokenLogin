@@ -14,7 +14,7 @@ Flask Based API for the Sign-Up & Login using the Token Authentication
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required**. Name For The User |
+| `username` | `string` | **Required**. Name For The User |
 | `email` | `string` | **Required**. Email Of The User |
 | `password` | `string` | **Required**. Password Of The User |
 
@@ -44,7 +44,7 @@ connection : close
 ```
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `name` | `string` | **Required**. Name For The User |
+| `username` | `string` | **Required**. Name For The User |
 | `email` | `string` | **Required**. Email Of The User |
 | `password` | `string` | **Required**. Password Of The User |
 
@@ -85,7 +85,7 @@ connection : close
 #### Response
 
 ```http
-Welcome {User.Name}
+Welcome {User.userame}
 
 ```
 
